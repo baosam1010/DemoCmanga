@@ -1,0 +1,49 @@
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+  
+}
+html{
+  font-family: 'Poppins','arial', sans-serif;
+}
+:root{
+  --primary-color:#F0564A;
+  --light-background:white;
+  --text-color: #001661;
+  --text-white: white;
+  --text-light:#A89F99;
+
+  --darkmode-color: #18191A;
+  --dark-background:#242526;
+  --dark-text:white;
+
+  
+}
+.ml-4{
+  margin-left: 4px;
+}
+.mr-8{
+  margin-right: 8px;
+}
+.App {
+  text-align: center;
+}
+
+/* pc large */
+@media (min-width: 1200px){
+
+}
+/* > PC low resolution */
+@media (min-width: 1024px) and (max-width: 1239px) {
+
+}
+/* tablet */
+@media (min-width:740px) and (max-width:1023px){
+
+}
+
+/* mobile */
+@media (max-width:739px) {
+
+}
