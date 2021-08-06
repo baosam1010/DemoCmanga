@@ -13,12 +13,16 @@ html{
   --text-color: #001661;
   --text-white: white;
   --text-light:#A89F99;
+  --heading-color:#ccc;
 
   --darkmode-color: #18191A;
   --dark-background:#242526;
   --dark-text:white;
 
   
+}
+button{
+  cursor: pointer;
 }
 .ml-4{
   margin-left: 4px;
@@ -36,10 +40,17 @@ html{
 }
 /* > PC low resolution */
 @media (min-width: 1024px) and (max-width: 1239px) {
-
+      
 }
 /* tablet */
 @media (min-width:740px) and (max-width:1023px){
+  
+  .manga-avatar-img{
+    min-height: 100%;
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+  }
 
 }
 

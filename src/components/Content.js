@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './../assets/css/content.css';
-import ChatBox from './ChatBox';
+import ChatBox from './mainHomePage/ChatBox';
 import MainHomePage from './mainHomePage/MainHomePage'
 import RightHomePage from './RightHomePage';
 
@@ -11,7 +11,7 @@ class Content extends Component {
         return (
             <div className=" content">
                 <div className="grid wide content-wrapper ">
-                    <div className="row">
+                    <div className="row margin-row">
                         <div className="col l-9">
                             <ChatBox/>
                             <MainHomePage/>

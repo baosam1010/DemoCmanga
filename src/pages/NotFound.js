@@ -4,7 +4,7 @@ class NotFound extends Component {
     render() {
         return (
             <div className="notfound">
-                <p>Không tìm thấy trang</p>
+                <h1>404-Không tìm thấy trang</h1>
             </div>
         );
     }

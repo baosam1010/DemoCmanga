@@ -4,33 +4,42 @@ import HomePageMenus from './HomePageMenus';
 import HomePageDes from './HomePageDes';
 import HomePageNav from './HomePageNav';
 import HomePageList from './HomePageList';
-import axios from 'axios';
-
+// import axios from 'axios';
 
 
 
 
 class MainHomePage extends Component {
-    state = {
-        MangaList: [],
-    };
+    
 
-    componentDidMount() {
+    // constructor(props) {
+    //     super(props);
+    //     this.state={
+    //         MangaList : [],
+    //     };
+    // }
+
+    // componentDidMount() {
         
-        axios.get("https://60f7820c9cdca00017454e83.mockapi.io/manga/v1/articles")
-            .then(response => this.setState({ MangaList: response.data }));
-    };
+    //     axios.get("https://60f7820c9cdca00017454e83.mockapi.io/manga/v1/articles")
+    //         .then(response => this.setState({ MangaList: response.data }));
+    // };
 
     render() {
+
+
         return (
             <div className="main-home-page">
                 <HomePageMenus />
                 <HomePageDes />
-                <HomePageList mangas={this.state.MangaList} />
-                <HomePageNav />
+                {/* <HomePageList mangas={this.props.MangaList} /> */}
+                <HomePageList  />
+                <HomePageNav /> 
             </div>
+
         );
     }
 }
+
 
 export default MainHomePage;

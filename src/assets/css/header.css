@@ -37,14 +37,16 @@
     margin-left:20px;
     align-items: center;
 }
+
 .top-search_input{
-    width: 100%;
+    min-width: 100%;
     padding: 0 45px 0 20px;
     height: 44px;
     border-radius: 22px;
-    border: 1px solid #e0e0e0;   
+    border: 1px solid var(--primary-color);   
     font-size: 14px;
 }
+
 .top-search_input:focus{
     outline:none;
 }
@@ -53,15 +55,23 @@
     top: 50%;
     transform: translateY(-50%);
     right: 0px;
-    /* border: none; */
     color: var(--primary-color);
     background-color: transparent;
     padding: 10px 20px;
+    font-size: 20px;
+    border: 1px solid transparent;
+
+}
+.top-search_inp-right{
+    display: none;
+    padding: 9px 10px;
+    border-radius: 50%;
+    color: var(--text-white);
     font-size: 19px;
     border: 1px solid transparent;
-    cursor: pointer;
-}
+    background-color:var(--primary-color);
 
+}
 .header-top-right{
     position: absolute;
     right: 0;
@@ -72,6 +82,7 @@
     display: flex;
     flex-wrap: row;
     right:0;
+    align-items: center;
 }
 .header-btn{
     border:none;
@@ -89,6 +100,7 @@
 .header-bottom-wrapper{
     background-color: var(--primary-color);
     color: var(--text-white);
+    position: relative;
 
 }
 .header-bottom{
@@ -171,24 +183,193 @@
     position: absolute;
     right: 0;
 }
+.btn_nav{
+    display: none;
+    background-color: transparent;
+    border: none;
+    font-size:20px;
+    width: 52px;
+    line-height: 52px;
+    color: var(--text-white);
+    position:absolute;
+    right:0;
+    top: 0;
+}
 /* pc large */
 @media (min-width: 1200px){
-
+    .menu_pc{
+        display:flex !important;
+    }
 }
 /* > PC low resolution */
 @media (min-width: 1024px) and (max-width: 1239px) {
-
+    .menu_pc{
+        display:flex !important;
+    }
 }
 /* tablet */
 @media (min-width:740px) and (max-width:1023px){
-
+    /* .top-search_input{
+        display: none;
+    } */
+    /* .header-input-mc{
+        display: block;
+        position: absolute;
+        transform: translateY(58px);
+        background-color: var(--text-white);
+        border-radius: 150px;
+        z-index: 3;
+        width: 100%;
+        margin-left: 0;
+    
+    }
+    .header-bottom{
+        display: none;
+        flex-wrap: wrap;
+        background-color:var(--primary-color);
+        z-index: 2;
+        position: relative;
+        right: 0;
+        left: 0;
+        height: 52px;
+    }
+    .header-bottom-bkg{
+        position: relative;
+        height: 52px;
+    }
+    .header-bottom-left{
+        display: unset;
+        width: 100%;
+        position: relative;
+        transform: translateY(0px);
+        background-color: var(--primary-color);
+    }
+    .header-bottom-left li{
+        
+        color: black;
+    }
+    .header-bottom-right{
+        display: unset;
+        position: relative;
+        width: 100%;
+        left: 0;
+        transform: translateY(0px);
+        background-color: var(--primary-color);
+    }
+    .header-bottom-right li{
+        color: black;
+    }
+    .btn_nav{
+        display:block;
+        z-index: 2;
+    } */
+    
 }
 
 /* mobile */
 @media (max-width:739px) {
+    .top-search{
+        display: none;
+    }
+    .dark-mode{
+        margin-left: 4px;
+    }
+    .header-btn{
+        margin-left: 4px;
+        width: 80px;
+    }
+    .margin-row{
+        margin-left: 4px;
+        margin-right: 4px;
+    }
 
 }
+/* tablet vaf mobile */
+@media (max-width:1023px){
+    .menus-hide-list{
+        width: 100%;
+        position: unset;
+        background-color: var(--primary-color);
+       
+    }
 
+    .header-input-mc{
+        display: none;
+        position: absolute;
+        transform: translateY(58px);
+        background-color: var(--text-white);
+        border-radius: 150px;
+        z-index: 3;
+        width: 100%;
+        margin-left: 0;
+    
+    }
+    .top-search_inp-right{
+        display: block;
+    }
+    .showNav,
+    .header-bottom{
+        /* display: none; */
+        flex-wrap: wrap;
+        background-color:var(--primary-color);
+        position: relative;
+        right: 0;
+        left: 0;
+        height: 52px;
+        z-index: 2;
+    }
+    .header-bottom-bkg{
+        position: relative;
+        height: 52px;
+    }
+    .header-bottom-left{
+        display: unset;
+        width: 100%;
+        position: relative;
+        transform: translateY(0px);
+        background-color: var(--primary-color);
+    }
+    .header-bottom-left li{
+        
+        color: black;
+    }
+    .menus-hide-list li a{
+        color: var(--text-white);
+        
+    }
+    .menus-hide-list li{
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .menus-hide-list li:hover a{
+        color: var(--text-color);
+        background-color: #de847d
+
+    }
+
+    .header-bottom-right{
+        display: unset;
+        position: relative;
+        width: 100%;
+        left: 0;
+        transform: translateY(-1px);
+        background-color: var(--primary-color);
+    }
+    .header-bottom-right li{
+        color: black;
+    }
+    .btn_nav{
+        display:block;
+        z-index: 2;
+    }
+    .showNav{
+        display:none;
+    }
+    .top-search_input{
+        height: 50px;
+    }
+
+}
 
 /* ----------------Form đăng nhập-------------------- */
 
@@ -206,25 +387,26 @@
     
 }
 
-#form-1{
+#form-1,
+#form-2{
     width: 100%;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     background-color:var(--light-background);
     flex-direction: column;
-    border-radius: 4px;
-    
+    border-radius: 4px; 
 }
-
+#form-2 input,
 #form-1 input{
-    border: 1px solid #ccc;
+    border: 1px solid var(--heading-color);
     padding: 0 15px;
     line-height: 48px;
     border-radius: 4px;
     width: 100%;
 }
 
-#form-heading{
+#form-1-heading,
+#form-2-heading{
     display: block;
     text-align: center;
     text-transform: uppercase;
@@ -243,7 +425,7 @@
     margin: 10px 0;
 }
 #module-repeat-pass{
-    display: none;
+    display: block;
 }
 .btn-form{
    display: flex;
@@ -254,7 +436,7 @@
    height: 40px;
 }
 .btn-common{
-    display: none;
+    display: block;
 
     position: relative;
     left: 0;

@@ -1,6 +1,6 @@
 .chat-control{
     position: relative;
-    background-color:#f0f0f0;
+    background-color:var(--heading-color);
     /* height:372px; */
     /* padding:0; */
     /* margin-left: -12px;
@@ -23,20 +23,27 @@
 .button-rectange{
     margin:14px 4px 0 4px;
     padding: 0 7px;
-    border: 1px solid #f0564a;
+    border: 1px solid var(--primary-color);
     border-radius: 4px;
     height: 32px;
     line-height:32px;
     font-weight: 500;
     background-color:transparent;
     color: #f0564a;
+    cursor: pointer;
 
 }
 
+.button-rectange:hover{
+    background-color:rgba(255,255,255,0.6);
+}
 .active-button{
     background-color:var(--primary-color) !important;
-    color: var(--text-white);
+    color: var(--text-white) !important;
 }
+/* .active-info{
+    display:none;
+} */
 /* .menu-left-global{
 
 }
@@ -55,7 +62,6 @@
     font-size: 10px;
     color: var(--text-white);
     background-color:var(--primary-color);
-
 }
 .chat-menu-right{
     position: absolute;
@@ -72,17 +78,16 @@
     border-radius:50%;
     margin-right: 8px;
     font-size:20px;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.button-circle:hover{
+    background-color:rgba(255,255,255,0.6);
+    
 
 }
-/* .on-off-nity{
 
-}
-.up-size-chat{
-
-}
-.on-off-volume{
-
-} */
 
 /* ------------------------------------------- */
 /* chat box */
@@ -90,7 +95,7 @@
     position: relative;
     display:flex;
     flex-wrap: wrap;
-    height:267px;
+    /* height:270px; */
     margin-top: 14px;
     padding:10px;
     border-radius: 4px;
@@ -127,7 +132,7 @@
     border-radius: 150px;
     float: left;
     margin-right: 7px;
-    border: 1px solid #e2e2e2;
+    border: 1px solid var(--primary-color);
 }
 .chat-content{
     float: left;
@@ -142,6 +147,9 @@
 .name-user{
     color: var(--primary-color);
 }
+/* .chat-des{
+
+} */
 .time {
     font-size: 12px;
     position: absolute;
@@ -161,6 +169,7 @@
     width: 100%;
 }
 .reload-chat{
+    display: none;
     position: absolute;
     right: 0;
     top:50%;
@@ -176,7 +185,7 @@
 }
 /* ------------------------ */
 .profile-userInfo{
-    display:none;
+    /* display:none; */
     position:fixed;
     top: 0;
     bottom: 0;

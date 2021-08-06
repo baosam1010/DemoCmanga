@@ -18,7 +18,7 @@ class RightHomePage extends Component {
         // console.log(e.target.innerText);
 
         let tagPtop = e.target.parentElement.children;
-        // console.log(tagPtop)
+        // console.log("tagPtop:",tagPtop)
 
         let tagNextTop = e.target.parentElement.nextSibling.children;
 
@@ -36,7 +36,7 @@ class RightHomePage extends Component {
             }
             switch (e.target.innerText) {
 
-                case "Top Ngày":
+                case "Top Views":
                     if (tagNextTop.length > 0) {
                         // console.log("vào trường hợp 11111")
                         for (let i = 0; i < tagNextTop.length; i++) {
@@ -49,7 +49,7 @@ class RightHomePage extends Component {
                     }
                     break;
 
-                case "Top Tuần":
+                case "Top Follows":
                     if (tagNextTop.length > 0) {
                         // console.log("vào trường hợp 22222")
                         for (let i = 0; i < tagNextTop.length; i++) {
@@ -61,7 +61,7 @@ class RightHomePage extends Component {
                         }
                     }
                     break;
-                case "Top Tổng":
+                case "Top Total":
                     if (tagNextTop.length > 0) {
                         // console.log("vào trường hợp 3333")
                         for (let i = 0; i < tagNextTop.length; i++) {
@@ -100,9 +100,9 @@ class RightHomePage extends Component {
                 <div className="right-home-top">
                     <div className="top-manga-wrapper">
                         <h3 className="top-manga-heading">
-                            <p onClick={this.onChangeTop} className="active-top">Top Ngày</p>
-                            <p onClick={this.onChangeTop} >Top Tuần</p>
-                            <p onClick={this.onChangeTop} >Top Tổng</p>
+                            <p onClick={this.onChangeTop} className="active-top">Top Views</p>
+                            <p onClick={this.onChangeTop} >Top Follows</p>
+                            <p onClick={this.onChangeTop} >Top Total</p>
                         </h3>
                         <ul id="top-lenght">
                             <li className="top-day">

@@ -36,10 +36,12 @@
     display: flex;
     flex-wrap: wrap;
     position: relative;
+
 }
 .top-manga-wrapper ul{
     max-height: 255px;
     overflow: hidden;
+    width: 100%;
 }
 .top-manga-heading{
     width: 100%;
@@ -48,9 +50,9 @@
 }
 .top-manga-heading p{
     line-height: 45px;
-    width: 33.33%;
+    width: calc(100%/3);
     text-align: center;
-    background-color: #ecf0f1;
+    background-color: var(--heading-color);
     font-weight: 600;
     cursor: pointer;
     font-size: 14px;
@@ -90,6 +92,7 @@
 .top-manga-info-view{
     position: absolute;
     right:0;
+    bottom: 0;
 }
 .top-manga-stt{
     font-size: 20px;
@@ -120,4 +123,18 @@
 }
 
 
+/* tablet */
+@media (min-width:740px) and (max-width:1023px){
+    .top-manga-wrapper{
+      margin-bottom: 20px;
+    }
+}
 
+  
+/* mobile */
+@media (max-width:739px) {
+    .top-manga-wrapper{
+    margin: 0 12px 20px;
+
+    }
+}

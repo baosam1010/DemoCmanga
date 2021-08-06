@@ -5,17 +5,18 @@
 }
 .footer-wrapper{
     display:flex;
+    flex-wrap: wrap;
+    width:100%;
 
 }
 .footer-left {
-
-
+    margin-bottom: 20px;
 }
 .footer-logo{
     height:40px;
     padding:0 16px;
     border-radius:50%;
-    background-color:#ccc;
+    background-color:var(--heading-color);
 }
 .footer-left-detail{
     margin: 10px 0;
@@ -37,10 +38,9 @@
 .footer-left-res{
     font-size: 16px;
 }
-.footer-right{
-    
-    
-}
+/* .footer-right{
+      
+} */
 .footer-right-list{
     flex-wrap: wrap;
     list-style-type: none;
