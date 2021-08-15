@@ -27,8 +27,9 @@ function Form(props) {
         criteriaMode: "all"
     });
     const onSubmit1 = (data,e) => {
-        console.log(data.SyntheticBaseEvent,e);
-        return false;
+        console.log(e);
+
+        // return false;
 
     };
     const onSubmit2 = (data,e) => {
@@ -122,7 +123,14 @@ function Form(props) {
                     </li>
                 </ul>               
                 <div className="btn-form">
-                    <button type="submit" id="btn-register" className="btn-common">Đăng Ký</button>
+                    <button 
+                        type="submit" 
+                        id="btn-register" 
+                        className="btn-common"
+                        
+                    >
+                        Đăng Ký
+                    </button>
                     <button onClick={onCloseForm} className="btn-close">Hủy</button>
                 </div>
             </form>
@@ -186,7 +194,10 @@ function Form(props) {
                 <div className="btn-form">
                     <button 
                         type="submit" 
-                        id="btn-logup" className="btn-common">Đăng nhập
+                        id="btn-logup" className="btn-common"
+                        
+                    >
+                        Đăng nhập
                     </button>
                     <button onClick={onCloseForm} className="btn-close">Hủy</button>
                 </div>

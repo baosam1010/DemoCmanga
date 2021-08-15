@@ -2,13 +2,16 @@
     padding:10px 0;
 } */
 /* header top */
+/* header{
+    background-color: var(--light-background);
+} */
 .header-top{
     display: flex;
     flex-direction: row;
     position: relative;
     padding:10px 0;
     align-items: center;
-
+    /* background-color: #ccc; */
 }
 .header-top-left{
     height: 44px;
@@ -195,17 +198,35 @@
     right:0;
     top: 0;
 }
+.active_inp{
+    display: block;
+}
 /* pc large */
 @media (min-width: 1200px){
     .menu_pc{
         display:flex !important;
     }
+    .search_top{
+        display:flex !important;
+    }
+    .header-bottom-wrapper{
+        margin-top: 0 !important;
+    }
+    
+
 }
 /* > PC low resolution */
 @media (min-width: 1024px) and (max-width: 1239px) {
     .menu_pc{
-        display:flex !important;
+        display: flex !important;
     }
+    .search_top{
+        display: flex !important;
+    }
+    .header-bottom-wrapper{
+        margin-top: 0 !important;
+    }
+  
 }
 /* tablet */
 @media (min-width:740px) and (max-width:1023px){
@@ -279,12 +300,17 @@
         width: 80px;
     }
     .margin-row{
-        margin-left: 4px;
-        margin-right: 4px;
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
     }
+    .chat-menu-header{
+        margin-left: 0px !important;
+        margin-right: 0px !important;
 
+    }
 }
-/* tablet vaf mobile */
+/* tablet và mobile */
 @media (max-width:1023px){
     .menus-hide-list{
         width: 100%;
@@ -292,18 +318,23 @@
         background-color: var(--primary-color);
        
     }
-
+    
     .header-input-mc{
         display: none;
         position: absolute;
-        transform: translateY(58px);
         background-color: var(--text-white);
         border-radius: 150px;
         z-index: 3;
         width: 100%;
         margin-left: 0;
-    
+        transform: translateY(58px);
+        animation: moveInp 0.5s ease-in
     }
+@keyframes moveInp {
+    from{transform: translateY(40px);}
+    to{transform: translateY(58px);}
+} 
+
     .top-search_inp-right{
         display: block;
     }

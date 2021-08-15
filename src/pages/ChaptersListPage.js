@@ -1,40 +1,43 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from './../components/Footer'
 import { Link } from 'react-router-dom'
 import './../assets/css/chapterslistpage.css';
-// import axios from 'axios';
-// import PropTypes from 'prop-types'
-import {connect} from 'react-redux';
-import {chapterListRequests} from './../actions/index'
+import { connect } from 'react-redux';
+import { chapterListRequests } from './../actions/index'
 
 
-// ChaptersListPage.defaultProps = [];
 
- function ChaptersListPage(props) {
+function ChaptersListPage(props) {
     var [mangaList] = useState([]);
-
-    console.log("ChapterlistPage 1:",mangaList)
+    var isColor = props.isColor;
+    // console.log("ChaptersListPage 1:",mangaList)
 
     // url trên chorm
-    var {match} = props;
+    var { match } = props;
     var url = match.url;
     // console.log("ListpageUrl:",match)
+    // console.log("ListpageUrl:",props)
+
 
     useEffect(() => {
-         props.getChapterList()
+        props.getChapterList()
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-  
+
 
     mangaList = props.mangaList
-    console.log("ChapterListpage:",mangaList)
+    // console.log("ChapterListpage:",mangaList)
 
     // -----------Kiểm tra tên truyện đầu vào--------------
-    var nameManga = match.url.substring(1);
-    // console.log(nameManga);
-    
-    
+    var x = 0;
+    if (url.includes('category')) {
+        x = 17;
+
+    } else { x = 1 }
+    var nameManga = match.url.substring(x);
+
+    // console.log("nameManga:",nameManga);
 
     // -----------Lấy category trong mangaList ------------
     const getCategory = (mangaList) => {
@@ -63,10 +66,24 @@ import {chapterListRequests} from './../actions/index'
                 if (mangaList[i].slug === nameManga) {
                     result = mangaList[i].chapters.map((chapter, index) => {
                         return (
-                            <tr key={index}>
-                                <td key={index}><Link className="book-item-link" to={`${url}/chapter-${chapter.chapterNum}`}>Chương {chapter.chapterNum} </Link></td>
-                                <td>{Math.floor(mangaList[i].undateTime / 86400000)} ngày</td>
-                                <td>{mangaList[i].views}</td>
+                            <tr key={index}
+
+                            >
+                                <td key={index}>
+                                    <Link
+                                        className="book-item-link"
+                                        to={`${url}/chapter-${chapter.chapterNum}`}
+                                        style={{
+                                            color: isColor ? "white" : "black",
+                                        }}
+                                    >Chương {chapter.chapterNum} </Link>
+                                </td>
+                                <td style={{color: isColor ? "white" : "black",}}>
+                                    {Math.floor(mangaList[i].undateTime / 86400000)} ngày
+                                </td>
+                                <td style={{color: isColor ? "white" : "black",}}>
+                                    {mangaList[i].views}
+                                </td>
                             </tr>
                         )
                     })
@@ -107,35 +124,47 @@ import {chapterListRequests} from './../actions/index'
         return result;
     };
     //------------Lấy avartar của Book manga----------------
-    const getAvatarBook = (mangaList) =>{
-        if(mangaList.length > 0){
+    const getAvatarBook = (mangaList) => {
+        if (mangaList.length > 0) {
             for (let i = 0; i < mangaList.length; i++) {
-               if(mangaList[i].slug === nameManga){
-                   return (
-                        <div className=" book-item-avartar"><img src={mangaList[i].imageurl} alt={mangaList[i].name}></img></div> 
-                   )
-               }
+                if (mangaList[i].slug === nameManga) {
+                    return (
+                        <div className=" book-item-avartar"><img src={mangaList[i].imageurl} alt={mangaList[i].name}></img></div>
+                    )
+                }
             }
-        }   
+        }
     };
     //--------------Lấy tên truyện---------------------------
-    const getNameBook = (mangaList) =>{
-        if(mangaList.length > 0){
+    const getNameBook = (mangaList) => {
+        if (mangaList.length > 0) {
             for (let i = 0; i < mangaList.length; i++) {
-               if(mangaList[i].slug === nameManga){
-                   return (
-                    <h2 className="book-item-name">{mangaList[i].name}</h2>
-                   )
-               }
+                if (mangaList[i].slug === nameManga) {
+                    return (
+                        <h2 className="book-item-name">{mangaList[i].name}</h2>
+                    )
+                }
             }
-        }   
+        }
     };
 
 
 
     return (
-        <div className=" chapters-list">
-            <div className="grid wide chapters-list-wrapper">
+        <div
+            className=" chapters-list"
+            style={{
+                backgroundColor: isColor ? "#18191A" : "var(--heading-color)",
+                color: isColor ? "white" : "black",
+            }}
+        >
+            <div
+                className="grid wide chapters-list-wrapper"
+                style={{
+                    backgroundColor: isColor ? "#242526" : "white",
+                    // color: isColor ? "white" : "black",
+                }}
+            >
                 <div className=" book-item">
                     {getAvatarBook(mangaList)}
                     {/* <div className=" book-item-avartar"><img src={hack} alt="manga-avatar"></img></div> */}
@@ -178,14 +207,20 @@ import {chapterListRequests} from './../actions/index'
                     </tbody>
                 </table>
             </div>
-            {/* <div className="grid wide book-form-wrapper">
-                        <form className="book-item-comment" onSubmit={this} >
-                            <label for="book-item-input"><i className="fas fa-comments"></i> 0 bình luận</label>
-                            <textarea id="book-item-input" type="text" placeholder="Nội dung comment ..." />
-                            <button type="submit"><i className="tele-icon fab fa-telegram-plane"></i></button>
-                        </form>
-                        <button className="all-comments">xem tất cả bình luận</button>
-                </div>   */}
+            <div
+                className="grid wide book-form-wrapper"
+                style={{
+                    backgroundColor: isColor ? "#242526" : "white",
+                    // color: isColor ? "white" : "black",
+                }}
+            >
+                <form className="book-item-comment" onSubmit={this} >
+                    <label htmlFor="book-item-input"><i className="fas fa-comments"></i> 0 bình luận</label>
+                    <textarea id="book-item-input" type="text" placeholder="Nội dung comment ..." />
+                    <button type="submit"><i className="tele-icon fab fa-telegram-plane"></i></button>
+                </form>
+                <button className="all-comments">xem tất cả bình luận</button>
+            </div>
             <div className="mt-50">
                 <Footer />
             </div>
@@ -194,16 +229,17 @@ import {chapterListRequests} from './../actions/index'
     )
 }
 
-const mapDispatchToProps = (dispatch, props)=>{
+const mapDispatchToProps = (dispatch, props) => {
     return {
-        getChapterList : ()=>{
+        getChapterList: () => {
             dispatch(chapterListRequests())
-        }    
+        }
     }
 }
-const mapStateToProps = (state)=>{
+const mapStateToProps = (state) => {
     return {
         mangaList: state.chapterList, //  lấy ở index store có chứa các state
+        isColor: state.changeColor,// nhận từ reducer
     }
 }
-export default connect(mapStateToProps,mapDispatchToProps)(ChaptersListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ChaptersListPage);

@@ -26,14 +26,14 @@ class MainHomePage extends Component {
     // };
 
     render() {
-
+        // console.log("MainHomePage:",this.props.match)
 
         return (
             <div className="main-home-page">
                 <HomePageMenus />
                 <HomePageDes />
                 {/* <HomePageList mangas={this.props.MangaList} /> */}
-                <HomePageList  />
+                <HomePageList  match={this.props.match}/>
                 <HomePageNav /> 
             </div>
 

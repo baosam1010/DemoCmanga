@@ -74,3 +74,32 @@ export const filterSearch = (filter)=>{
         filter      // type grid nhận được từ HomePageMenus
     }
 }
+// CHANGE COLOR
+export const changeColor = (isColor)=>{
+    return {
+        type: Types.CHANGE_COLOR,
+        isColor      // type grid nhận được từ Header Menu
+    }
+}
+// CHANGE TOP
+export const changeTopRequests = ()=>{
+    return  (dispatch)=>{
+        return callAPI("","GET", null)
+            .then(response=>{
+                dispatch(changeTop(response.data))
+            })
+    }
+}
+export const changeTop = (mangaList)=>{
+    return {
+        type: Types.CHANGE_TOP,
+        mangaList
+    }
+}
+// SEND NAME MANGA
+export const sendNameManga = (nameLink)=>{
+    return {
+        type: Types.SEND_NAME_MANGA,
+        nameLink      //  nhận được từ Header Menus chỗ action, xuyên không...
+    }
+}

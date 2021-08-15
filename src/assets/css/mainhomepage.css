@@ -34,6 +34,9 @@
     height: 40px;
     
 }
+.update-sort:focus{
+    outline: none;
+}
 .home-page-des{
     background-color:var(--light-background);
     color: #18191A;
@@ -65,14 +68,20 @@
     flex-wrap: wrap;
     position: relative;
     margin-bottom: 20px;
-    border-radius: 4px;
-    
-    
+    border-radius: 4px; 
 }
 .item-manga-grid:hover{
     box-shadow: 0 0 12px rgba(248, 49, 14, 0.9);
     transform: translateY(-4px);
     transition: transform 1s;
+    animation-name: goto;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+@keyframes goto {
+    50%{ transform: translateY(4px)}
+    100%{transform: translateY(-4px)}
+
 }
 .manga-avatar{
     position: relative;
@@ -121,7 +130,7 @@
     white-space: nowrap; 
 }
 .manga-info-heading:hover{
-   color: var(--primary-color);
+   color: var(--primary-color) !important;
 
 }
 .manga-info-detail{
@@ -135,7 +144,7 @@
     font-size: 14px;
 }
 .last-chater:hover{
-    color: var(--primary-color);
+    color: var(--primary-color) !important;
 }
 .time-chapter{
     position: absolute;

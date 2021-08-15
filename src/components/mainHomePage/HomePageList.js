@@ -10,7 +10,6 @@ class HomePageList extends Component {
         this.state = {
             mangas: [],
             // sort: "",
-
         }
     }
 
@@ -23,9 +22,12 @@ class HomePageList extends Component {
         var mangas = this.props.mangas;
         var sort = this.props.sort;
         var filter = this.props.filter;
-        console.log("filter-HomepageList:", filter)
+        var { match } = this.props;
+
+
+        // console.log("filter-HomepageList:", filter)
         // console.log("sort: ", sort)
-        // console.log("propsHomepage",this.props)
+        // console.log("propsHomepageList", this.props.match)
         // console.log("mangas:",mangas)
 
 
@@ -50,18 +52,69 @@ class HomePageList extends Component {
                 );
             };
         }
-        mangas.sort(compareValues(sort,( sort === 'undateTime' ? 'asc' : 'desc')))
-        // Hàm filter danh sách các truyện
-            if (filter !== ""){
-            //    return mangas= mangas.name.search(filter)
+        mangas = mangas.sort(compareValues(sort, (sort === 'undateTime' ? 'asc' : 'desc')))
+
+        // console.log("sau Sort:", mangas)
+        // console.log("filter:", filter)
+
+        //-------------- Hàm sort theo Category-----------
+        if (match !== undefined) {
+            var url = match.url;
+            if (url.includes('category')) {
+                // console.log("HomePageListUrl:", match.url)
+                mangas = mangas.filter((manga) => {
+                    var categories = [];
+                    if (manga.category.length > 0) {
+                        manga.category.map((category) => {
+                            return categories.push(category.normalize('NFD')
+                                .replace(/[\u0300-\u036f]/g, '')
+                                .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+                                .toLowerCase()
+                                .trim()
+                                .replace(/ /, '-'))
+                        })
+                    }
+                    manga.categories = categories
+                    // console.log('categories:', manga)
+                    for (let i = 0; i <manga.categories.length; i++) {
+                        return url.includes(manga.categories[i])
+                    }
+                    return manga
+                })
+                // console.log("mangasCategory:", mangas)
             }
-            
-        
+        }
+        // console.log('mangas_Category:', mangas)
+
+// ----------Hàm filter danh sách các truyện------------
+        var filterManga = null;
+        if (filter === "") {
+            // console.log("filter ở đây rỗng")
+            filterManga = mangas;
+
+        } else {
+            console.log("filter ở đây có giá trị", filter)
+            filterManga = mangas.filter(function (manga, index, array) {
+                // chuyển có dấu thành không dấu rồi so sánh chuỗi có trong tên truyện hay không
+                var a = manga.name.normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+                    .toLowerCase();
+                var b = filter.normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .replace(/đ/g, 'd').replace(/Đ/g, 'D')
+                    .toLowerCase();
+                return a.includes(b)
+            })
+        }
+
+        // console.log("filterManga:", filterManga)
+
         return (
             <div className="home-page-list">
                 <ul className="lists-manga">
-                    {mangas.map((manga) => (
-                        <ItemManga key={manga.id} manga={manga} />
+                    {filterManga.map((manga) => (
+                        <ItemManga key={manga.id} manga={manga} match={match}/>
                     ))}
                 </ul>
             </div>
@@ -81,8 +134,6 @@ const mapStateToProps = (state) => {
         mangas: state.listAll, // lấy listAll từ store(store có chưa reducer listAll)
         sort: state.sort,
         filter: state.filterSearch,
-
-
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomePageList);

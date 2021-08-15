@@ -7,6 +7,8 @@ import scientist from './../../assets/images/scientist.png';
 import helmet from './../../assets/images/helmet.png';
 import gloves from './../../assets/images/gloves.png';
 import boots from './../../assets/images/boots.png';
+import {connect} from 'react-redux'
+
 
 
 
@@ -39,8 +41,12 @@ class ChatBox extends Component {
     }
 
     render() {
+        var isColor = this.props.isColor;
         return (
-            <div className="chat-control">
+            <div 
+                className="chat-control"
+                style={{backgroundColor: isColor ? "#18191a" :"var(--heading-color)"}}
+            >
                 <div className="chat-menu-header">
                     <div className="chat-menu-left">
                         <button className="button-rectange menu-left-global active-button">
@@ -81,82 +87,278 @@ class ChatBox extends Component {
 
                     </div>
                 </div>
+
                 {/* Chat Box */}
-                <div className="chat-box" >
+                <div 
+                    className="chat-box" 
+                    style={{backgroundColor: isColor ? "#242526" :"var(--light-background)"}}
+                >
                     <div className="chat-div" style={{ height: this.state.height + 'px' }}>
                         <ul className="chat-list chat-global" >
                             <li>
-                                <img className="img-user" src={women} alt="women"/>
+                                <img 
+                                    className="img-user" 
+                                    src={women} alt="women"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>SamSam</span>
-                                    <span className="chat-des">: Có ai có đồ bán không</span>
-                                    <span className="time time-format"> 14 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >SamSam:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước
+                                    </span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={research} alt="research"/>
+                                <img 
+                                    className="img-user" 
+                                    src={research} alt="research"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>Harley</span>
-                                    <span className="chat-des">: Có ai có đồ bán không</span>
-                                    <span className="time time-format"> 13 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >LuLu:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+
+
+                                    > 14 phút trước
+                                    </span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={scientist} alt="women"/>
+                                <img 
+                                    className="img-user" 
+                                    src={scientist} alt="scientist"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>LuLu</span>
-                                    <span className="chat-des">: Không có gì...</span>
-                                    <span className="time time-format"> 12 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >MiuMiu:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước</span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={women} alt="women"/>
+                                <img 
+                                    className="img-user" 
+                                    src={women} alt="women"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>SamSam</span>
-                                    <span className="chat-des">: Có ai có đồ bán không</span>
-                                    <span className="time time-format"> 11 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >SamSam:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước</span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={research} alt="research"/>
+                                <img 
+                                    className="img-user" 
+                                    src={women} alt="women"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>Harley</span>
-                                    <span className="chat-des">: Có ai có đồ bán không</span>
-                                    <span className="time time-format"> 10 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >SamSam:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước</span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={scientist} alt="women"/>
+                                <img 
+                                    className="img-user" 
+                                    src={women} alt="women"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>LuLu</span>
-                                    <span className="chat-des">: Không có gì...</span>
-                                    <span className="time time-format"> 9 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >SamSam:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước</span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={women} alt="women"/>
+                                <img 
+                                    className="img-user" 
+                                    src={women} alt="women"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>SamSam</span>
-                                    <span className="chat-des">: không bán </span>
-                                    <span className="time time-format"> 8 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >SamSam:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước</span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={research} alt="research"/>
+                                <img 
+                                    className="img-user" 
+                                    src={women} alt="women"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>Harley</span>
-                                    <span className="chat-des">: Có không</span>
-                                    <span className="time time-format"> 7 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >SamSam:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước</span> 
                                 </p>
                             </li>
                             <li>
-                                <img className="img-user" src={scientist} alt="women"/>
+                                <img 
+                                    className="img-user" 
+                                    src={women} alt="women"
+                                    style={{border: isColor ? "1px solid #91b3b8" :"1px solid var(--primary-color)"}}
+
+                                />
                                 <p className="chat-content">
-                                    <span className="name-user" onClick={this.showInfo}>LuLu</span>
-                                    <span className="chat-des">: haha </span>
-                                    <span className="time time-format"> 6 phút trước</span> 
+                                    <span 
+                                        className="name-user" 
+                                        onClick={this.showInfo}
+                                        style={{color: isColor ? "var(--text-white)" :"black"}}
+                                    >SamSam:
+                                    </span>
+                                    <span 
+                                        className="chat-des"
+                                        style={{color: isColor ? "#91b3b8" :"black"}}
+                                    > Có ai có đồ bán không
+                                    </span>
+                                    <span 
+                                        className="time time-format"
+                                        style={{
+                                            color: isColor ? "white" :"black",
+                                            opcity: 0.6,
+                                        }}
+                                    > 14 phút trước</span> 
                                 </p>
-                            </li>   
+                            </li>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                             
                             
                         </ul>
                         <ul className="chat-list chat-market" >
@@ -181,13 +383,14 @@ class ChatBox extends Component {
                     <div className="chat-add">
                         <input 
                             className="chat-text"
-                            type="text"                           
+                            type="text"   
+                            maxLength= "40"                        
                             placeholder="Bạn muốn nói điều gì"
+                            style={{backgroundColor: isColor ? "#242526" :"var(--light-background)"}}
                         />
                         <button className="reload-chat">
                             <i className="fas fa-arrow-circle-down"></i>
                         </button>
-                        
                     </div>
                 </div>
                 {/* Profile của user */}
@@ -209,4 +412,10 @@ class ChatBox extends Component {
     
 }
 
-export default ChatBox;
+
+const mapStateToProps = (state) => {
+    return {
+        isColor: state.changeColor,// nhận từ reducer
+    }
+}
+export default connect(mapStateToProps)(ChatBox);

@@ -7,6 +7,10 @@ import Form from './Form';
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { filterSearch } from './../../actions'
+import { changeColor } from './../../actions'
+// import { sendNameManga } from './../../actions'
+
+
 
 
 
@@ -14,62 +18,62 @@ import { filterSearch } from './../../actions'
 const menus = [
     {
         name: 'Action',
-        to: '/action',
+        to: '/category/action',
         exact: false,
     },
     {
         name: 'Cổ đại',
-        to: '/co-dai',
+        to: '/category/co-dai',
         exact: false,
     },
     {
         name: 'Manhwa',
-        to: '/manhwa',
+        to: '/category/manhwa',
         exact: false,
     },
     {
         name: 'Chuyển Sinh',
-        to: '/chuyen-sinh',
+        to: '/category/chuyen-sinh',
         exact: false,
     },
     {
         name: 'Ngôn tình',
-        to: '/ngon-tinh',
+        to: '/category/ngon-tinh',
         exact: false,
     },
     {
         name: 'Manga',
-        to: '/manga',
+        to: '/category/manga',
         exact: false,
     },
     {
         name: 'Xuyên Không',
-        to: '/xuyen-khong',
+        to: '/category/xuyen-khong',
         exact: false,
     },
     {
         name: 'Yaoi',
-        to: '/yaoi',
+        to: '/category/yaoi',
         exact: false,
     },
     {
         name: 'Comic',
-        to: '/comic',
+        to: '/category/comic',
         exact: false,
     },
     {
         name: 'Trinh Thám',
-        to: '/trinh-tham',
+        to: '/category/trinh-tham',
         exact: false,
     },
     {
         name: 'Đam Mỹ',
-        to: '/dam-my',
+        to: '/category/dam-my',
         exact: false,
     },
     {
         name: 'Josei',
-        to: '/josei',
+        to: '/category/josei',
         exact: false,
     },
 
@@ -94,21 +98,38 @@ class Header extends Component {
         super(props);
         this.state = ({
             isShowNav: false,
-            
+            isColor: true,
+            // isInp: false,
         });
         this.myRef = React.createRef();
     };
+
     // ------------- Show menus --------------
+    // onSendNameManga=(e)=>{
+    //     // console.log("e_header:",e.target.href)
+    //     var nameLink = e.target.href
+    //     var dispatch = this.props.dispatch;
+    //     dispatch(sendNameManga(nameLink))
+    // }
+
     showMenus = (menus) => {
         var result = null;
         if (menus.length > 0) {
             result = menus.map((menu, index) => {
-                return (<li key={index} className="col l-2 m-4 c-6"><Link to={menu.to} exact={menu.exact ? 1 : 0} >{menu.name}</Link></li>)
+                return (
+                <li key={index} className="col l-2 m-4 c-6">
+                    <Link 
+                        to={menu.to} exact={menu.exact ? 1 : 0} 
+                        onClick={this.onSendNameManga}
+                    >
+                        {menu.name}
+                    </Link>
+                </li>)
             })
         }
         return result;
     }
-
+    
     // -----------Open and close Form login,register---------------
     onOpenForm = (e) => {
         document.getElementById('login-signup').style.display = 'flex';
@@ -137,43 +158,75 @@ class Header extends Component {
     onShowNav = () => {
         this.setState({ isShowNav: !this.state.isShowNav })
     };
-    // ----- filter search----------
+
+    // Window.onClick = (e) => {
+    //     if (e.target == modal) {
+    //         modal.style.display = "none";
+    //       }
+    // };
 
     // --------onSearch----------
     onSearch = (e) => {
         const value = e.target.value
-        var dispatch = this.props.dispatch;
         // console.log("myRef:", this.myRef)
-        setTimeout(() => {
-            dispatch(filterSearch(value))
-        }, 300)
-      
+        // setTimeout(() => {
+        // }, 300)
+        var dispatch = this.props.dispatch;
+        dispatch(filterSearch(value))
+
 
     };
     //------Submit form search------------
     onSubmitSearch = (event) => {
-
         event.preventDefault();
         console.log("Đã submit thành công");
     };
+    //------------Đổi màu nền -----------------
+    onChangeColor = () => {
+        // document.documentElement.style.setProperty("--primary-color", "black")
+        
+        // this.setState(state => ({ isColor: !state.isColor }))
+        this.setState({isColor: !this.state.isColor})
+        var dispatch = this.props.dispatch
+        dispatch(changeColor(this.state.isColor))
+    };
+    // ------onOpenInpHeader-------
+    onOpenInpHeader=()=> {
+        document.getElementById('search_top').style.display = 'flex';
+        document.getElementById('nav_menu').style.marginTop = '62px';
+    }
 
     render() {
         var filter = this.props.filter;
-        console.log("filter:", filter)
+        var isColor = this.props.isColor;
+        // console.log("isColor1:",this.state.isColor)
+        // console.log("filter:", filter)
 
         return (
-            <header >
+            <header className="header" style={{ backgroundColor: isColor ? "#18191a" : "white" }}>
                 <div className="grid wide header-top">
                     <div className="header-top-left">
                         <Link to="/" ><img className="header-top-logo" src={logo} alt="logo" /></Link>
                     </div>
-                    <button className="dark-mode">
+                    <button
+                        className="dark-mode"
+                        onClick={this.onChangeColor}
+                        style={{
+                            backgroundColor: isColor ? "#E4E6EB" : "white",
+                            color: isColor ? "black" : "var(--primary-color)",
+                            border: isColor ? "1px solid #E4E6EB" : "1px solid var(--primary-color)"
+
+                        }}
+                    >
                         <i className="fas fa-lightbulb"></i>
                     </button>
                     <form
                         id="search_top"
-                        className="top-search header-input-mc"
+                        className="top-search header-input-mc "
                         onSubmit={this.onSubmitSearch}
+                        
+            // -----------xem lại -------------------------
+                        // style={{  display: this.state.isInp ? 'flex' :'none' }}
                     >
                         <input
                             className="top-search_input"
@@ -183,15 +236,35 @@ class Header extends Component {
                             value={filter}
                             onChange={this.onSearch}
                             autoComplete="true"
-                            
-
-
+                            style={{
+                                backgroundColor: isColor ? "#3a3b3c" : "white",
+                                border: isColor ? "1px solid #3a3b3c" : "1px solid var(--primary-color)"
+                            }}
                         />
-                        <button type="submit" className="top-search_btn"><i className="top-search_icon fas fa-search"></i></button>
+                        <button
+                            type="submit"
+                            className="top-search_btn"
+                            style={{
+                                color: isColor ? "#999da1" : "var(--primary-color)",
+                            }}
+                        >
+                            <i className="top-search_icon fas fa-search"></i>
+                        </button>
                     </form>
                     <div className="header-top-right">
                         <ul className="header-top-right_list">
-                            <button className="top-search_inp-right "><i className="top-search_icon fas fa-search"></i></button>
+                            <button
+                                className="top-search_inp-right"
+                                style={{
+                                    backgroundColor: isColor ? "#E4E6EB" : "white",
+                                    color: isColor ? "black" : "var(--primary-color)",
+                                    border: isColor ? "1px solid #E4E6EB" : "1px solid var(--primary-color)",
+                    
+                                }}
+                                onClick={this.onOpenInpHeader}
+                            >
+                                <i className="top-search_icon fas fa-search"></i>
+                            </button>
                             <li><button onClick={this.onOpenForm} className="header-btn" >Đăng Ký</button></li>
                             <li><button onClick={this.onOpenForm} className="header-btn" >Đăng Nhập</button></li>
                         </ul>
@@ -199,12 +272,19 @@ class Header extends Component {
                     <Form />
 
                 </div>
-                <nav id="nav_menu" className="header-bottom-wrapper" >
+                <nav
+                    id="nav_menu"
+                    className="header-bottom-wrapper"
+                    style={{ 
+                        backgroundColor: isColor ? "#242526" : "var(--primary-color)",
+                        // marginTop: this.state.isInp ? "60px":"0"
+                        }}
+                >
                     <div className="grid wide header-bottom-bkg ">
                         <div className="header-bottom menu_pc" style={{ display: this.state.isShowNav === true ? 'flex' : 'none' }} >
                             <ul className="header-bottom-left">
                                 <li className="menu-hide">
-                                    <Link to="/category">
+                                    <Link to='/'>
                                         Thể Loại
                                         <i className="arrow-down fas fa-sort-down"></i>
                                     </Link>
@@ -234,7 +314,11 @@ class Header extends Component {
                                 <li><a href="https://www.facebook.com/groups/cmangadotcom">Group Facebook</a></li>
                             </ul>
                         </div>
-                        <button onClick={this.onShowNav} className="btn_nav">
+                        <button
+                            onClick={this.onShowNav}
+                            // onOutsideClick={}
+                            className="btn_nav"
+                        >
                             <i className="fas fa-bars" />
                         </button>
                     </div>
@@ -248,7 +332,8 @@ class Header extends Component {
 }
 const mapStateToProps = (state) => {
     return {
-        filter: state.filterSearch,
+        filter: state.filterSearch,// nhận từ reduceer
+        isColor: state.changeColor,// nhận từ reducer
     }
 }
 export default connect(mapStateToProps, null)(Header);

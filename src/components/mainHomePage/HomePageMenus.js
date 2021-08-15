@@ -23,9 +23,9 @@ class HomePageMenus extends Component {
     };
     onChangeSort = (e) => {
         var target = e.target
-        console.log("target:",target.value)
+        console.log("target:", target.value)
         var dispatch = this.props.dispatch;
-        dispatch(sortMangas(target.value));   
+        dispatch(sortMangas(target.value));
     }
 
 
@@ -33,6 +33,7 @@ class HomePageMenus extends Component {
     render() {
 
         var grid = this.props.grid;
+        var isColor = this.props.isColor;
         // console.log("grid inittial Reducer:", grid);
         // var slt_option = this.props.slt_option;
         // console.log("slt_option 1:",slt_option)
@@ -49,7 +50,7 @@ class HomePageMenus extends Component {
                     <button
                         title="Loại bỏ nội dung 18+"
                         className="button-circle"
-                        style={{display:"none"}}
+                        style={{ display: "none" }}
                     >
                         <i className="fas fa-baby"></i>
                     </button>
@@ -60,7 +61,15 @@ class HomePageMenus extends Component {
                     >
                         <i className="fas fa-list"></i>
                     </button>
-                    <select className="update-sort" value={this.props.slt_option} onChange={this.onChangeSort}>
+                    <select
+                        className="update-sort"
+                        value={this.props.slt_option}
+                        onChange={this.onChangeSort}
+                        style={{
+                            backgroundColor: isColor ? "#18191a" : "var(--heading-color)",
+
+                        }}
+                    >
                         <option value="undateTime">Sắp xếp theo </option>
                         <option value="undateTime">Ngày cập nhật </option>
                         <option value="views">Tổng lượt xem </option>
@@ -76,6 +85,8 @@ class HomePageMenus extends Component {
 // )
 const mapStateToProps = (state) => ({
     grid: state.changeGrid,
-    slt_option: state.sort
+    slt_option: state.sort,
+    isColor: state.changeColor,
+
 })
 export default connect(mapStateToProps, null)(HomePageMenus);

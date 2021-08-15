@@ -5,6 +5,12 @@ import getChapter from './getChapter';
 import sort from './sort';
 import changeGrid from './changeGrid';
 import filterSearch from './filterSearch';
+import changeColor from './changeColor';
+import changeTop from './changeTop';
+import sendNameManga from './sendNameManga';
+
+
+
 
 
 
@@ -18,6 +24,9 @@ const myReducer = combineReducers({
     sort,
     changeGrid,
     filterSearch,
+    changeColor,
+    changeTop,
+    sendNameManga,
     
 });
 

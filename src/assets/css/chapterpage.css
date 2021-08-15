@@ -30,16 +30,15 @@
 
 }
 .chapter-wrapper img{
-    width: 90%;
+    width: 80%;
 }
 /*-------------------------Form comment------------- */
-.book-form-wrapper{
+.book-form-wrapper-chapter{
     width: 100%;
-    display: flex;
     position: relative;
+    display: flex;
     flex-wrap: wrap;
     background-color: white;
-    /* margin-bottom: 50px; */
     margin-top: 50px;
 }
 .book-item-comment{
@@ -89,4 +88,9 @@
 }
 .all-comment:hover{
     color: var(--primary-color);
+}
+@media (max-width: 739px) {
+    .chapter-wrapper img{
+        width:100%;
+    }
 }

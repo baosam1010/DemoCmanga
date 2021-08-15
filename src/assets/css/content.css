@@ -6,3 +6,6 @@
     display: flex;
     position: relative;
 }
+.row_width{
+    width: 100%;
+}
